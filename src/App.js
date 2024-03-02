@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Landing from "./Components/Landing";
 import Signin from "./Components/Signin";
 import Service from "./Components/Service";
+import Profile from "./Components/Profile";
 
 function App() {
   return (
@@ -22,6 +23,11 @@ function App() {
           exact
           path="/Service"
           element={<Service />} // Render Signin component for /signin route
+        />
+        <Route
+          exact
+          path="/Profile"
+          element={<Profile />} // Render Signin component for /signin route
         />
       </Routes>
     </Router>

@@ -21,7 +21,7 @@ function Signin() {
     }
 
     function handleCreateAccountClick() {
-        navigate("/register"); // Replace with the actual path to your registration page
+        navigate("/Profile"); // Replace with the actual path to your registration page
     }
 
     function Input({ type, id, name, label, placeholder, autofocus }) {

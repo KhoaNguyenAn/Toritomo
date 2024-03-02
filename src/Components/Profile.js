@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+//import {handler} from "AI/openai_prompt";
 
-const Profile = () => {
+function Profile() {
   const [inputText, setInputText] = useState("");
   const [checklistItems, setChecklistItems] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -15,37 +16,32 @@ const Profile = () => {
         body: JSON.stringify({
           messages: [
             {"role": "user", "content": inputText},
-            // Include any other messages as needed
           ]
         }),
       });
   
-      if (!response.ok) {s
-        throw new Error('Network response was not ok');
+      if (!response.ok) {
       }
   
       const data = await response.json();
-      processApiResponse(data.answer); // Assuming this function processes the API response
+      processApiResponse(data.answer); 
     } catch (error) {
       console.error('There was a problem with the fetch operation:', error);
     }
   };
 
-  // Process the API response
   const processApiResponse = (responseText) => {
-    // Perform regex operation to split by ","
     const items = responseText.split(",");
-    // Update state to display checklist items
     setChecklistItems(items);
-    setIsSubmitted(true); // Set submitted state to true
+    setIsSubmitted(true); // Set submit state to true
   };
 
-  // Handle input text change
+  // handle input text change
   const handleInputChange = (e) => {
     setInputText(e.target.value);
   };
 
-  // Render checklist items as selectable options
+  // render checklist items
   const renderChecklistItems = () => {
     return checklistItems.map((item, index) => (
       <div key={index}>
@@ -55,6 +51,7 @@ const Profile = () => {
     ));
   };
 
+  // original html
   return (
     <div className="profile-section-wrapper">
       <div className="profile-section-top">
