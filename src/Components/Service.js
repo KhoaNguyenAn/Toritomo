@@ -30,48 +30,53 @@ const generatePeople = (count) => {
 };
 
 const Service = () => {
-    const [genderedUsers, setGenderedUsers] = useState(generatePeople(20))
-    const [lastDirection, setLastDirection] = useState()
+  const [genderedUsers, setGenderedUsers] = useState(generatePeople(20));
+  const [lastDirection, setLastDirection] = useState();
 
+  const swiped = (direction, swipedUserId) => {
+      if (direction === 'right') {
+          console.log("swipe right");
+      }
+      setLastDirection(direction);
+  };
 
-    const swiped = (direction, swipedUserId) => {
-        if (direction === 'right') {
-            console.log("swipe right")
-        }
-        setLastDirection(direction)
-    }
+  const outOfFrame = (name) => {
+      console.log(name + ' left the screen!');
+  };
 
-    const outOfFrame = (name) => {
-        console.log(name + ' left the screen!')
-    }
-
-    return (
-        
-            <div className="Service">
-                <ChatContainer/>
-                <div className="swipe-container">
-                    <div className="card-container">
-
-                        {genderedUsers?.map((genderedUser) =>
-                            <TinderCard
-                                className="swipe"
-                                key={genderedUser.name}
-                                onSwipe={(dir) => swiped(dir, genderedUser.name)}
-                                onCardLeftScreen={() => outOfFrame(genderedUser.name)}>
-                                <div
-                                    style={{backgroundImage: "url(" + genderedUser.url + ")"}}
-                                    className="card">
-                                    <h3>{genderedUser.name}</h3>
-                                </div>
-                            </TinderCard>
-                        )}
-                        <div className="swipe-info">
-                            {lastDirection ? <p>You swiped {lastDirection}</p> : <p/>}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-    )
-}
+  return (
+      <div className="Service">
+          <ChatContainer />
+          <div className="swipe-container">
+              <div className="card-container">
+                  {genderedUsers?.map((genderedUser) => (
+                      <TinderCard
+                          className="swipe mb-6 w-96"
+                          key={genderedUser.name}
+                          onSwipe={(dir) => swiped(dir, genderedUser.name)}
+                          onCardLeftScreen={() => outOfFrame(genderedUser.name)}
+                      >
+                          <div className="card bg-white shadow-lg p-4 rounded-md flex items-center">
+                              <div className="image-container w-5/6 bg-cover bg-center h-full" style={{ backgroundImage: "url(" + genderedUser.url + ")" }}>
+                                  <h3 className="text-white text-lg font-bold p-4 bg-gray-900 bg-opacity-50">{genderedUser.name}</h3>
+                              </div>
+                              <div className="skills-container ml-4 w-1/2">
+                                  <h4 className="text-lg font-bold mb-2">Skills:</h4>
+                                  <ul>
+                                      {genderedUser.skills.map((skill, index) => (
+                                          <li key={index} className="text-gray-700">{skill}</li>
+                                      ))}
+                                  </ul>
+                              </div>
+                          </div>
+                      </TinderCard>
+                  ))}
+                  <div className="swipe-info">
+                      {lastDirection ? <p className="text-gray-500">You swiped {lastDirection}</p> : <p />}
+                  </div>
+              </div>
+          </div>
+      </div>
+  );
+};
 export default Service
