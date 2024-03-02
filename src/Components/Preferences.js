@@ -59,7 +59,7 @@ function Preferences() {
   };
 
   function handleClick() {
-    navigate("/Services");
+    navigate("/Service");
   }
 
   // render checklist items
