@@ -1,25 +1,19 @@
 .card{
     position:relative;
-    width: 400px;
-    padding: 20px;
+    width: 800px;
+    padding: 0px;
     max-width: 85vw;
-    height:50vh;
+    height: 290vh;
     border-radius: 10px;
     background-position: center;
     background-size: cover;
-    }
-    
-    .card h3{
-      color: #fff;
-      position: absolute;
-      bottom: 0;
-      margin: 10px;
     }
     
     .tinderCard_container{
       display: flex;
       justify-content: center;
       margin-top: 10vh;
+      margin-left: 30vh;
     }
     
     .swipe{

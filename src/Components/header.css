@@ -6,10 +6,11 @@
   }
   
   .header_icon{
-    padding: 10px;
+    padding: 5px;
+    height: 40px;
   }
   
   .header_logo{
     object-fit: contain;
-    height: 40px;
+    height: 80px;
   }
