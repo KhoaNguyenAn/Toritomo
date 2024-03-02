@@ -2,6 +2,7 @@ import TinderCard from 'react-tinder-card'
 import {useEffect, useState} from 'react'
 import ChatContainer from './ChatContainer';
 import WebsiteBuilder from '../Assets/website-builder.gif'
+import CongratulationGif from '../Assets/matchprofile.gif'
 
 const names = ["Alice", "Bob", "Charlie", "David", "Eva", "Frank", "Grace", "Hank", "Ivy", "Jack", "Karen", "Leo", "Mia", "Nathan", "Olivia", "Paul", "Quinn", "Rachel", "Sam", "Tom"];
 
@@ -35,6 +36,8 @@ const Service = () => {
   const [genderedUsers, setGenderedUsers] = useState(generatePeople(20));
   const [lastDirection, setLastDirection] = useState();
   const [selectedUserSkills, setSelectedUserSkills] = useState([]);
+  const [congratulationUser, setCongratulationUser] = useState(null);
+
 
   const [showSkillsPrompt, setShowSkillsPrompt] = useState(false);
 
@@ -50,6 +53,9 @@ const Service = () => {
   const swiped = (direction, swipedUserId) => {
       if (direction === 'right') {
           console.log("swipe right");
+          if (['Alice', 'Bob', 'David', 'Ivy'].includes(swipedUserId)) {
+            setCongratulationUser(swipedUserId);
+          }
       }
       setLastDirection(direction);
   };
@@ -97,6 +103,15 @@ const Service = () => {
                   </div>
               </div>
           </div>
+
+          {congratulationUser && (
+            <div className="congratulation-prompt fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-80 z-50">
+              <div className="rounded-lg overflow-hidden">
+                <img src={CongratulationGif} alt="Congratulation Gif" className="w-96 h-96 rounded" />
+              </div>
+              <h2 className="text-white font-bold text-3xl absolute bottom-12">It is a match, {congratulationUser}!</h2>
+            </div>
+          )}
 
           {showSkillsPrompt && (
             <div className="skills-prompt fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900 bg-opacity-80 z-50">
