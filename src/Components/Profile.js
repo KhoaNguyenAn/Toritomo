@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router';
 import axios from 'axios';
 //import {handler} from "AI/openai_prompt";
 import BannerBackground from "../Assets/home-banner-background.png";
 import BannerImage from "../Assets/home-banner-image.png";
 import '../App.css'
+
 function Profile() {
+  const navigate = useNavigate();
   const [inputText, setInputText] = useState("");
   const [checklistItems, setChecklistItems] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -56,6 +59,9 @@ function Profile() {
     setInputText(e.target.value);
   };
 
+  function handleClick() {
+    navigate("/Preferences");
+  }
 
   // render checklist items
   const renderChecklistItems = () => {
@@ -91,7 +97,7 @@ function Profile() {
         <div className="checklist-wrapper">
           <h2>Select what applies to you:</h2>
           {renderChecklistItems()}
-          <button onClick={() => alert("Done!")}>Done</button>
+          <button onClick={handleClick}>Done</button>
         </div>
       )}
     </div>

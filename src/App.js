@@ -4,6 +4,7 @@ import Landing from "./Components/Landing";
 import Signin from "./Components/Signin";
 import Service from "./Components/Service";
 import Profile from "./Components/Profile";
+import Preferences from "./Components/Preferences";
 
 function App() {
   return (
@@ -28,6 +29,11 @@ function App() {
           exact
           path="/Profile"
           element={<Profile />} // Render Signin component for /signin route
+        />
+        <Route
+          exact
+          path="/Preferences"
+          element={<Preferences />} // Render Signin component for /signin route
         />
       </Routes>
     </Router>
