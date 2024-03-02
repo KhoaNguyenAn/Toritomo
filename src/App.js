@@ -4,15 +4,17 @@ import About from "./Components/About";
 import Work from "./Components/Work";
 import Testimonial from "./Components/Testimonial";
 import Contact from "./Components/Contact";
+import Profile from "./Components/Profile";
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      {/* <Home />
       <About />
       <Work />
       <Testimonial />
-      <Contact />
+      <Contact /> */}
+      <Profile />
     </div>
   );
 }

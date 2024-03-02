@@ -15,15 +15,15 @@ const About = () => {
       <div className="about-section-text-container">
         <p className="primary-subheading">About</p>
         <h1 className="primary-heading">
-          Torimoto where money is no more the concern of getting something
+          An innovative services platform!
         </h1>
         <p className="primary-text">
-          Lorem ipsum dolor sit amet consectetur. Non tincidunt magna non et
-          elit. Dolor turpis molestie dui magnis facilisis at fringilla quam.
+        Emerging trends suggest that the younger generation seeks alternative ways to exchange services beyond traditional monetary systems.
+        Instead of solely relying on money, we believe in fostering a service-based exchange system among young people, better unlocking their potential.
+
         </p>
         <p className="primary-text">
-          Non tincidunt magna non et elit. Dolor turpis molestie dui magnis
-          facilisis at fringilla quam.
+        Our success depends on the spirit of deep collaboration within a local community of diverse individuals determined to make the world and each other better every day.
         </p>
         <div className="about-buttons-container">
           <button className="secondary-button">Learn More</button>

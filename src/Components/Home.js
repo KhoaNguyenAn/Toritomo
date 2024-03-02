@@ -2,6 +2,7 @@ import React from "react";
 import BannerBackground from "../Assets/home-banner-background.png";
 import BannerImage from "../Assets/home-banner-image.png";
 import { FiArrowRight } from "react-icons/fi";
+import Profile from "./Profile"
 
 const Home = () => {
   return (
@@ -17,7 +18,7 @@ const Home = () => {
           <p className="primary-text">
           Torimoto empowers users to trade skills and services seamlessly, fostering a vibrant community where value is exchanged without the need for traditional currency. Join our platform to unlock a world of collaborative opportunities and connect with others who share your passion for a new era of trade and barter.
           </p>
-          <button className="secondary-button">
+          <button className="secondary-button" onClick={() => window.open('/Profile', '_blank')}>
             Trade Now <FiArrowRight />{" "}
           </button>
         </div>
