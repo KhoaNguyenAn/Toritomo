@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from 'axios';
 //import {handler} from "AI/openai_prompt";
-
+import BannerBackground from "../Assets/home-banner-background.png";
+import BannerImage from "../Assets/home-banner-image.png";
+import '../App.css'
 function Profile() {
   const [inputText, setInputText] = useState("");
   const [checklistItems, setChecklistItems] = useState([]);
@@ -67,20 +69,24 @@ function Profile() {
 
   // original html
   return (
-    <div className="profile-section-wrapper">
+    <div className="full-screen-container">
+    
+      <div className="home-bannerImage-container">
+        <img src={BannerBackground} alt="" />
+      </div>
       <div className="profile-section-top">
         <h1 className="primary-heading">Tell us about yourself!</h1>
         <p className="primary-text">
-          Don't hold back! We'd love to hear all about how awesome you are!
+          Who are you? What do you do?
         </p>
         <textarea
           value={inputText}
           onChange={handleInputChange}
-          placeholder="Skills you can offer..."
+          placeholder="All about you..."
         />
-
         <button onClick={handleSendMessage}>Submit</button>
       </div>
+
       {isSubmitted && (
         <div className="checklist-wrapper">
           <h2>Select what applies to you:</h2>

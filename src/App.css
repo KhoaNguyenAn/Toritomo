@@ -127,9 +127,12 @@ nav {
 .primary-heading {
   font-size: clamp(2rem, 5vw, 4rem);
   color: #4c4c4c;
-  /* line-height: 5rem; */
-  max-width: 600px;
+  max-width: 2000px;
+  white-space: nowrap; /* Prevent text from wrapping to a new line */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Indicate that text is cut off */
 }
+
 .primary-text {
   font-size: clamp(1rem, 3vw, 1.5rem);
   max-width: 500px;
@@ -479,25 +482,26 @@ nav {
   padding: 20px;
   margin: 0 auto;
   max-width: 600px; 
+  
 }
 
 .primary-heading {
   text-align: center;
   margin-bottom: 10px;
-  color: #333;
+  color: #3f3833;
 }
 
 .primary-text {
   text-align: center;
   margin-bottom: 20px;
-  color: #555;
+  color: #575757;
 }
 
 textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #ffffff;
   border-radius: 5px;
   resize: vertical;
   min-height: 100px; /* Adjust based on your preference */
@@ -507,14 +511,15 @@ button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
+  background-color: #ff6c43;
   color: white;
   cursor: pointer;
   margin-bottom: 20px;
+
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #ff9c51;
 }
 
 .checklist-wrapper {
@@ -540,6 +545,21 @@ button:hover {
   margin: 0;
   color: #555;
 }
+
+
+
+.full-screen-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin: 0 auto;
+  width: 100vw; /* 100% of the viewport width */
+  height: 100vh; /* 100% of the viewport height */
+  background-image: linear-gradient(to left, #DAE2F8, rgb(205, 186, 208), #D6A4A4);
+}
+
 
 /*-------- Service  --------*/
 .Service {

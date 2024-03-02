@@ -8,17 +8,17 @@ const Work = () => {
     {
       image: skill,
       title: "Expose your skills",
-      text: "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
+      text: "Let the world know what you have on offer.",
     },
     {
       image: swipe,
       title: "Swipe to match the service you prefer",
-      text: "Lorem ipsum dolor sit amet consectetur. Maecenas orci et ",
+      text: "Need Anything? Swipe Hard.",
     },
     {
       image: match,
       title: "Match !",
-      text: "Lorem ipsum dolor sit amet consectetur. Maecenas orci et lorem ipsum",
+      text: "Begin to help teh community by helping each other.",
     },
   ];
   return (
