@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -10,38 +11,18 @@ root.render(
 );
 
 
-// const express = require("express");
-// const { Configuration, OpenAIApi } = require("openai");
 
-// const app = express();
-// const port = process.env.PORT || 3000;
 
-// app.use(express.json());
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "your-api-key",
+  authDomain: "your-auth-domain",
+  projectId: "your-project-id",
+  storageBucket: "your-storage-bucket",
+  messagingSenderId: "your-messaging-sender-id",
+  appId: "your-app-id"
+};
 
-// app.post("/api/generate", async (req, res) => {
-//   const configuration = new Configuration({
-//     apiKey: process.env.OPENAI_API_KEY, // Use environment variable for API key
-//   });
-
-//   const openai = new OpenAIApi(configuration);
-
-//   try {
-//     const response = await openai.createChatCompletion({
-//       model: "gpt-3.5-turbo",
-//       messages: req.body.messages, // Use the request body
-//       max_tokens: 200,
-//       n: 1,
-//       stop: null,
-//       temperature: 0,
-//     });
-
-//     res.status(200).json({ answer: response.data.choices[0].message.content });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Internal Server Error" });
-//   }
-// });
-
-// app.listen(port, () => {
-//   console.log(`Server listening at http://localhost:${port}`);
-// });
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
