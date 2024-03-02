@@ -48,6 +48,7 @@ const Service = () => {
 
   const handleClosePrompt = () => {
     setShowSkillsPrompt(false);
+    setCongratulationUser(null);
   };
 
   const swiped = (direction, swipedUserId) => {
@@ -109,7 +110,14 @@ const Service = () => {
               <div className="rounded-lg overflow-hidden">
                 <img src={CongratulationGif} alt="Congratulation Gif" className="w-96 h-96 rounded" />
               </div>
-              <h2 className="text-white font-bold text-3xl absolute bottom-12">It is a match, {congratulationUser}!</h2>
+              <h2 className="text-white font-bold text-3xl absolute bottom-14">It is a match, {congratulationUser}!</h2>
+
+              <button
+                  className="mt-4 bg-indigo-500 text-white px-4 py-2 rounded-md absolute bottom-0"
+                  onClick={handleClosePrompt}
+              >
+                  Let's have a chat with each other !
+                </button>
             </div>
           )}
 
