@@ -7,24 +7,23 @@ const Work = () => {
   const workInfoData = [
     {
       image: skill,
-      title: "Expose your skills",
-      text: "Let the world know what you have on offer.",
+      title: "Introduce Yourself",
+      text: "Let the world know who you are and we'll help you offer your skills",
     },
     {
       image: swipe,
-      title: "Swipe to match the service you prefer",
+      title: "Swipe with people who offer favours you would love",
       text: "Need Anything? Swipe Hard.",
     },
     {
       image: match,
-      title: "Match !",
-      text: "Begin to help teh community by helping each other.",
+      title: "Match!",
+      text: "Connect with your match and exchange favours",
     },
   ];
   return (
     <div className="work-section-wrapper">
       <div className="work-section-top">
-        <p className="primary-subheading">Work</p>
         <h1 className="primary-heading">How It Works</h1>
         <p className="primary-text">
           With 3 easy steps, you can get started!

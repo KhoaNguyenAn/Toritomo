@@ -4,7 +4,7 @@ import axios from 'axios';
 //import {handler} from "AI/openai_prompt";
 import BannerBackground from "../Assets/home-banner-background.png";
 import BannerImage from "../Assets/home-banner-image.png";
-import '../App.css'
+import './Preferences.css';
 import { collection, addDoc } from 'firebase/firestore';
 import { getDatabase, ref, set, child, onValue, get } from "firebase/database";
 import { firebaseConfig } from "./FirebaseConfig";
@@ -134,10 +134,8 @@ function Profile() {
 
       <div className="profile-section-top">
         <h1 className="primary-heading">Tell us about yourself!</h1>
-        <p className="primary-text">
-          Who are you? What do you do?
-        </p>
-        <textarea
+        <p className="primary-text">Who are you? What do you do?</p>
+        <textarea className="input-text"
           value={inputText}
           onChange={handleInputChange}
           placeholder="All about you..."

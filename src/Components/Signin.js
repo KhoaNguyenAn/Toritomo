@@ -59,7 +59,7 @@ function Signin() {
     };
 
     function handleClick() {
-        navigate("/Service");
+        navigate("/Service", { state: { mydata: username } });
     }
 
     function handleCreateAccountClick() {

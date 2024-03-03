@@ -18,15 +18,14 @@ const About = () => {
           An innovative services platform!
         </h1>
         <p className="primary-text">
-        Emerging trends suggest that the younger generation seeks alternative ways to exchange services beyond traditional monetary systems.
-        Instead of solely relying on money, we believe in fostering a service-based exchange system among young people, better unlocking their potential.
+          Emerging trends suggest that the younger generation seeks alternative ways to exchange services beyond traditional monetary systems.
+          Instead of solely relying on money, we believe in fostering a service-based exchange system among young people, better unlocking their potential.
 
         </p>
         <p className="primary-text">
-        Our success depends on the spirit of deep collaboration within a local community of diverse individuals determined to make the world and each other better every day.
+          Our success depends on the spirit of deep collaboration within a local community of diverse individuals determined to make the world and each other better every day.
         </p>
         <div className="about-buttons-container">
-          <button className="secondary-button">Learn More</button>
           <button className="watch-video-button">
             <BsFillPlayCircleFill /> Watch Video
           </button>

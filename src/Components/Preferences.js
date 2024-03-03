@@ -6,7 +6,7 @@ import { getDatabase, ref, set, child, onValue, get } from "firebase/database";
 import { firebaseConfig } from "./FirebaseConfig";
 import { getFirestore } from 'firebase/firestore';
 import { initializeApp } from "firebase/app";
-import '../App.css';
+// import '../App.css';
 import './Preferences.css';
 import { useLocation } from 'react-router-dom';
 
@@ -119,7 +119,7 @@ function Preferences() {
       <div className="profile-section-top">
         <h1 className="preferences-primary-heading">What are you looking for?</h1>
         <p className="preferences-sub-heading">
-          If you could afford it, what services would you buy?
+          What services could improve your life right now?
         </p>
         <textarea className="input-text"
           value={inputText}

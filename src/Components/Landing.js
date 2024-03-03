@@ -9,10 +9,9 @@ function Landing() {
   return (
     <div className="App">
       <Home />
-      <About />
+
       <Work />
-      <Testimonial />
-      <Contact />
+
     </div>
   );
 }
