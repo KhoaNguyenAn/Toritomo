@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 //import {handler} from "AI/openai_prompt";
@@ -6,25 +6,41 @@ import BannerBackground from "../Assets/home-banner-background.png";
 import BannerImage from "../Assets/home-banner-image.png";
 import '../App.css'
 import { collection, addDoc } from 'firebase/firestore';
-//import { db } from "firebase";
-import { onValue, ref } from "firebase/database";
+import { getDatabase, ref, set, child, onValue, get } from "firebase/database";
 import { firebaseConfig } from "./FirebaseConfig";
 import { getFirestore } from 'firebase/firestore';
 import { initializeApp } from "firebase/app";
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/database';
+import { useLocation } from 'react-router-dom';
 
 function Profile() {
+  const location = useLocation();
+  // console.log(location.state.myData);
+  // const username = location.state?.username;
   const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+  const db = getDatabase(app)
+  const dbRef = ref(db)
   const navigate = useNavigate();
   const [inputText, setInputText] = useState("");
   const [checklistItems, setChecklistItems] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const usersCollectionRef = collection(db, "toritomi-fca0b");
+  let username = location.state.mydata;;
+  // if (location.state && location.state.mydata) {
+  //   username = location.state.mydata;
+  // }
+
+
+  // Function to update checklist items when services change
+  // const updateChecklistItems = (newServices) => {
+  //   const updatedChecklistItems = newServices.map(service => ({
+  //     name: service,
+  //     isChecked: false,
+  //   }));
+  //   setChecklistItems(updatedChecklistItems);
+  // };
 
   const handleSendMessage = async () => {
+
+
     try {
       const response = await axios.post('https://api.openai.com/v1/chat/completions',
         {
@@ -69,36 +85,37 @@ function Profile() {
   const handleInputChange = (e) => {
     setInputText(e.target.value);
   };
-
   function handleClick() {
-    navigate("/Preferences");
+    // alert("Username: " + username + " Password: " + password);
+    navigate("/Preferences", { state: { mydata: username } });
+  }
+  const handleDoneClick = () => {
+    // Call handleUpdateUser with necessary arguments
+    handleUpdateUser("username", checklistItems); // Replace "username" with the actual username variable if available
+
+    // Then call handleClick
+    handleClick();
+  };
+
+  // Getting the user from FireBase
+  const handleUpdateUser = async (checklist) => {
+    const values = [document.querySelectorAll('[type="checkbox"]:checked')
+    ].map(el => el.value);
+    console.log(values)
+    await updateUser(username, values);
   }
 
-  const addUser = async (name, email, password, checklistItems) => {
-    // try {
-    //   await addDoc(usersCollectionRef, {
-    //     name: name,
-    //     email: email,
-    //     services: checklistItems,
-    //   });
-    //   alert('User added successfully!');
-    // } catch (error) {
-    //   console.error("Error adding user: ", error);
-    //   alert('Failed to add user.');
-    // }
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // User created, now store the email in database
-        const user = userCredential.user;
-        firebase.database().ref('users/' + user.uid).set({
-          email: email
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-        alert('Failed to add user.')
-      });
+  const updateUser = async (username, checklist) => {
+    // Reference the field in database we are changing
+    const servicesRef = ref(db, 'users/' + username + '/services');
+
+    // Add services
+    const updatedServices = checklist;
+
+    // Update the user's services in the database
+    await set(servicesRef, updatedServices);
   };
+
 
 
   // render checklist items
@@ -131,7 +148,7 @@ function Profile() {
           <div className="checklist-wrapper">
             <h2>Select what applies to you:</h2>
             {renderChecklistItems()}
-            <button onClick={[handleClick, addUser("chloe", "chloe.koe@gmail.com", "hellow", checklistItems)]}>Done</button>
+            <button onClick={handleDoneClick}>Done</button>
           </div>
         )}
       </div>

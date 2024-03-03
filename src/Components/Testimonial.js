@@ -7,17 +7,15 @@ const Testimonial = () => {
     <div className="work-section-wrapper">
       <div className="work-section-top">
         <p className="primary-subheading">Testimonial</p>
-        <h1 className="primary-heading">What They Are Saying</h1>
+        <h1 className="primary-heading">What are they saying?</h1>
         <p className="primary-text">
-          Lorem ipsum dolor sit amet consectetur. Non tincidunt magna non et
-          elit. Dolor turpis molestie dui magnis facilisis at fringilla quam.
         </p>
       </div>
       <div className="testimonial-section-bottom">
         <img src={ProfilePic} alt="" />
         <p>
-          Lorem ipsum dolor sit amet consectetur. Non tincidunt magna non et
-          elit. Dolor turpis molestie dui magnis facilisis at fringilla quam.
+          Being a uni studeht is hectic, but ToriTomo has made life a breeze! FExchanging favours is a great way to get things done and meet new people.. Highly recommend!
+
         </p>
         <div className="testimonials-stars-container">
           <AiFillStar />

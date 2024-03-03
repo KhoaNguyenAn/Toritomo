@@ -1,10 +1,12 @@
 // Signin.js
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 function Signup() {
     const navigate = useNavigate();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     function Button({ value, onClick, style }) {
         return (
@@ -17,10 +19,19 @@ function Signup() {
     }
 
     function handleClick() {
-        navigate("/Profile");
+        // alert("Username: " + username + " Password: " + password);
+        navigate("/Profile", { state: { mydata: username } });
     }
 
-    function Input({ type, id, name, label, placeholder, autofocus }) {
+    const handleUsernameChange = (e) => {
+        setUsername(e.target.value);
+    };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    };
+
+    function Input({ type, id, name, label, placeholder, autofocus, value, onChange }) {
         return (
             <label className="text-gray-500 block mt-3">{label}
                 <input
@@ -29,6 +40,8 @@ function Signup() {
                     id={id}
                     name={name}
                     placeholder={placeholder}
+                    value={value}
+                    onChange={onChange}
                     className="rounded px-4 py-3 w-full mt-1 bg-white text-gray-900 border border-gray-200 focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-100" />
             </label>
         );
@@ -37,10 +50,10 @@ function Signup() {
     return (
         <div className="bg-gray-200 flex justify-center items-center h-screen w-screen" style={{ backgroundImage: 'url("https://source.unsplash.com/1920x1080/?background")', backgroundSize: 'cover' }}>
             <div className=" border-t-8 rounded-sm border-indigo-600 bg-white p-12 shadow-2xl w-96">
-                <h1 className="font-bold text-center block text-2xl">Log In</h1>
+                <h1 className="font-bold text-center block text-2xl">Register Your Account</h1>
                 <form>
-                    <Input type="email" id="email" name="email" label="Email Address" placeholder="me@example.com" autofocus={true} />
-                    <Input type="password" id="password" name="password" label="Password" placeholder="••••••••••" />
+                    <Input type="text" value={username} onChange={e => setUsername(e.target.value)} id="username" name="username" label="Username" placeholder="Jane" autofocus={true} />
+                    <Input type="password" value={password} onChange={e => setPassword(e.target.value)} id="password" name="password" label="Password" placeholder="••••••••••" />
                     <Button value="Next" onClick={handleClick} style="bg-gradient-to-r from-indigo-600 to-purple-400 hover:from-indigo-700 hover:to-purple-500 focus:bg-indigo-900 transform hover:-translate-y-1 hover:shadow-lg" />
                 </form>
             </div>

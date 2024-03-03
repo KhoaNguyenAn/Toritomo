@@ -2,11 +2,20 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import BannerBackground from "../Assets/home-banner-background.png";
-import BannerImage from "../Assets/home-banner-image.png";
+import { getDatabase, ref, set, child, onValue, get } from "firebase/database";
+import { firebaseConfig } from "./FirebaseConfig";
+import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from "firebase/app";
 import '../App.css';
 import './Preferences.css';
+import { useLocation } from 'react-router-dom';
 
 function Preferences() {
+  const location = useLocation();
+  let username = location.state.mydata;;
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app)
+  const dbRef = ref(db)
   const navigate = useNavigate();
   const [inputText, setInputText] = useState("");
   const [checklistItems, setChecklistItems] = useState([]);
@@ -60,7 +69,7 @@ function Preferences() {
   };
 
   function handleClick() {
-    navigate("/Service");
+    navigate("/Service", { state: { mydata: username } });
   }
 
   // render checklist items
@@ -73,27 +82,56 @@ function Preferences() {
     ));
   };
 
+  // Getting the user from FireBase
+  const handleUpdateUser = async (checklist) => {
+    await updateUser(username, checklist);
+  }
+
+  const updateUser = async (username, checklist) => {
+    // Reference the field in database we are changing
+    const servicesRef = ref(db, 'users/' + username + '/services');
+
+    // Add services
+    const updatedServices = checklist;
+
+    // Update the user's services in the database
+    await set(servicesRef, updatedServices);
+  };
+
+
+  function handleClick() {
+    // alert("Username: " + username + " Password: " + password);
+    navigate("/Service", { state: { mydata: username } });
+  }
+  const handleDoneClick = () => {
+    // Call handleUpdateUser with necessary arguments
+    handleUpdateUser("username", checklistItems);
+
+    // Then call handleClick
+    handleClick();
+  };
+
   // original html
   return (
     <div className="full-screen-container">
 
 
       <div className="profile-section-top">
-        <h1 className="preferences-primary-heading">Tell us about yourself!</h1>
+        <h1 className="preferences-primary-heading">What are you looking for?</h1>
         <p className="preferences-sub-heading">
-          Don't worry
+          If you could afford it, what services would you buy?
         </p>
-        <textarea className="input-preferences"
+        <textarea className="input-text"
           value={inputText}
           onChange={handleInputChange}
-          placeholder="All about you..."
+          placeholder="What you're looking for..."
         />
         <button onClick={handleSendMessage}>Submit</button>
         {isSubmitted && (
           <div className="checklist-wrapper">
             <h2>Select what applies to you:</h2>
             {renderChecklistItems()}
-            <button onClick={handleClick}>Done</button>
+            <button onClick={handleDoneClick}>Done</button>
           </div>
         )}
       </div>
