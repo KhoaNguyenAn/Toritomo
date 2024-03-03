@@ -56,7 +56,7 @@ const Service = () => {
   const swiped = (direction, swipedUserId) => {
     if (direction === 'right') {
       console.log("swipe right");
-      if (['Alice', 'Bob', 'David', 'Ivy'].includes(swipedUserId)) {
+      if (["Alice", "Bob", "Charlie", "David", "Eva", "Frank", "Grace", "Hank", "Ivy", "Jack", "Karen", "Leo", "Mia", "Nathan", "Olivia", "Paul", "Quinn", "Rachel", "Sam", "Tom"].includes(swipedUserId)) {
         setCongratulationUser(swipedUserId);
       }
     }
