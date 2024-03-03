@@ -15,7 +15,7 @@ const About = () => {
       <div className="about-section-text-container">
         <p className="primary-subheading">About</p>
         <h1 className="primary-heading">
-          An innovative services platform!
+          An innovative favour - exhange platform!
         </h1>
         <p className="primary-text">
           Emerging trends suggest that the younger generation seeks alternative ways to exchange services beyond traditional monetary systems.

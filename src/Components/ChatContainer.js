@@ -3,7 +3,7 @@ import ChatHeader from './ChatHeader';
 import MatchesDisplay from './MatchesDisplay';
 import ChatDisplay from './ChatDisplay';
 import { useState } from 'react';
-
+import { useLocation } from 'react-router-dom';
 const generateDummyUser = (id, name) => {
   return {
     user_id: id,
@@ -22,7 +22,9 @@ const generateDummyUsers = (count) => {
 };
 
 const ChatContainer = () => {
-  const [user] = useState(generateDummyUser(1, 'John')); // Generate a dummy user
+  const location = useLocation();
+  let username = location.state.mydata;;
+  const [user] = useState(generateDummyUser(1, username)); // Generate a dummy user
   const [clickedUser, setClickedUser] = useState(null);
 
   // Generate dummy data for matches
