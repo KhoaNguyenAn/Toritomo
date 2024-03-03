@@ -5,12 +5,24 @@ import axios from 'axios';
 import BannerBackground from "../Assets/home-banner-background.png";
 import BannerImage from "../Assets/home-banner-image.png";
 import '../App.css'
+import { collection, addDoc } from 'firebase/firestore';
+//import { db } from "firebase";
+import { onValue, ref } from "firebase/database";
+import { firebaseConfig } from "./FirebaseConfig";
+import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from "firebase/app";
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
 
 function Profile() {
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
   const navigate = useNavigate();
   const [inputText, setInputText] = useState("");
   const [checklistItems, setChecklistItems] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const usersCollectionRef = collection(db, "toritomi-fca0b");
 
   const handleSendMessage = async () => {
     try {
@@ -47,7 +59,6 @@ function Profile() {
     }
   };
 
-
   const processApiResponse = (responseText) => {
     const items = responseText.split(",");
     setChecklistItems(items);
@@ -62,6 +73,33 @@ function Profile() {
   function handleClick() {
     navigate("/Preferences");
   }
+
+  const addUser = async (name, email, password, checklistItems) => {
+    // try {
+    //   await addDoc(usersCollectionRef, {
+    //     name: name,
+    //     email: email,
+    //     services: checklistItems,
+    //   });
+    //   alert('User added successfully!');
+    // } catch (error) {
+    //   console.error("Error adding user: ", error);
+    //   alert('Failed to add user.');
+    // }
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        // User created, now store the email in database
+        const user = userCredential.user;
+        firebase.database().ref('users/' + user.uid).set({
+          email: email
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        alert('Failed to add user.')
+      });
+  };
+
 
   // render checklist items
   const renderChecklistItems = () => {
@@ -93,7 +131,7 @@ function Profile() {
           <div className="checklist-wrapper">
             <h2>Select what applies to you:</h2>
             {renderChecklistItems()}
-            <button onClick={handleClick}>Done</button>
+            <button onClick={[handleClick, addUser("chloe", "chloe.koe@gmail.com", "hellow", checklistItems)]}>Done</button>
           </div>
         )}
       </div>

@@ -5,6 +5,7 @@ import Signin from "./Components/Signin";
 import Service from "./Components/Service";
 import Profile from "./Components/Profile";
 import Preferences from "./Components/Preferences";
+import Signup from "./Components/Signup";
 
 function App() {
   return (
@@ -34,6 +35,11 @@ function App() {
           exact
           path="/Preferences"
           element={<Preferences />} // Render Signin component for /signin route
+        />
+        <Route
+          exact
+          path="/Signup"
+          element={<Signup />} // Render Signin component for /signin route
         />
       </Routes>
     </Router>
