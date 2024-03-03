@@ -1,6 +1,6 @@
 // Signin.js
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 import { getDatabase, ref, get } from "firebase/database";
@@ -12,6 +12,10 @@ function Signin() {
     const navigate = useNavigate();
     const [username, setusername] = useState("");
     const [password, setPassword] = useState("");
+    const [check1, setCheck1] = useState(false);
+    const [check2, setCheck2] = useState(false);
+
+
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app)
 
@@ -45,10 +49,13 @@ function Signin() {
 
     const handleusernameChange = (e) => {
         setusername(e.target.value);
+        setCheck1(true);
     };
 
     const handlePasswordChange = (e) => {
+        setCheck1(false);
         setPassword(e.target.value);
+        setCheck2(true);
     };
 
     function handleClick() {
@@ -80,8 +87,8 @@ function Signin() {
             <div className=" border-t-8 rounded-sm border-indigo-600 bg-white p-12 shadow-2xl w-96">
                 <h1 className="font-bold text-center block text-2xl">Sign In</h1>
                 <form>
-                    <Input type="username" value={username} onChange={handleusernameChange} id="username" name="username" label="username" placeholder="Jane" autofocus={true} />
-                    <Input type="password" value={password} onChange={handlePasswordChange} id="password" name="password" label="Password" placeholder="••••••••••" />
+                    <Input type="username" value={username} onChange={handleusernameChange} id="username" name="username" label="username" placeholder="Jane" autofocus={check1} />
+                    <Input type="password" value={password} onChange={handlePasswordChange} id="password" name="password" label="Password" placeholder="••••••••••" autofocus={check2} />
                     <Button value="Submit" onClick={handleSubmit} style="bg-gradient-to-r from-indigo-600 to-purple-400 hover:from-indigo-700 hover:to-purple-500 focus:bg-indigo-900 transform hover:-translate-y-1 hover:shadow-lg" />
                     <Button value="Create an Account" onClick={handleCreateAccountClick} style="bg-gray-500 hover:bg-gray-600" />
                 </form>
